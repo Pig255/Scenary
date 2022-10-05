@@ -1,11 +1,16 @@
 package wuhobin.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import wuhobin.container.CMDSetting;
 import wuhobin.entity.Node;
 import wuhobin.enums.ResultTypeEnum;
 import wuhobin.listener.CMDSettingListener;
+import wuhobin.mapper.NoderMapper;
+import wuhobin.pojo.Noder;
 import wuhobin.util.NormalUtil;
 
+import javax.annotation.PostConstruct;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,7 +24,24 @@ import java.util.Scanner;
  * @email xueli_shi@foxmail.com
  * @date 2022.04.12
  */
+@Component
 public class NodeRepository implements CMDSettingListener {
+    @Autowired
+    private NoderMapper noderMapper;
+    public static NodeRepository nodeRepository;
+    @PostConstruct
+    public void innit(){
+        nodeRepository=this;
+        nodeRepository.noderMapper=this.noderMapper;
+    }
+    public static List<Noder> getAll(){
+        List<Noder> list=nodeRepository.noderMapper.findAll();
+        return  list;
+    }
+    public static void insertNewNoder(int ID,double locx){
+        //在这里调用mapper的insert方法。
+    }
+
     private Map<Integer, Node> nodeMap;
     private float maxData;
     private float minData;
@@ -37,7 +59,17 @@ public class NodeRepository implements CMDSettingListener {
         List<Map<ResultTypeEnum, String>> nodeFileMapList = setting.getNodeFileMapList();
         ResultTypeEnum activeResult = setting.getActiveResult();
         int size = coefficients.size();
-
+        //判断是否需要入库，若需要走下面这行代码
+        int isImport = 0;
+        if(isImport==1){
+            for (int i = 0; i < size; i++) {
+                String oneFile = nodeFileMapList.get(i).get(activeResult);
+                if (!NormalUtil.floatEquals(coefficients.get(i), 0.0f)) {
+                    addNodeMapFromFile(oneFile, coefficients.get(i));
+                }
+            }
+        }
+        //将数据存入NodeMap
         for (int i = 0; i < size; i++) {
             String oneFile = nodeFileMapList.get(i).get(activeResult);
             if (!NormalUtil.floatEquals(coefficients.get(i), 0.0f)) {
@@ -98,6 +130,9 @@ public class NodeRepository implements CMDSettingListener {
             System.out.println("节点数据文件: " + nodeFile + "读取失败，已自动跳过");
         }
         System.out.println("节点数据文件: " + nodeFile + "读取完毕");
+    }
+    private void importNoderFromFile(String nodeFile, float coefficient) {
+        System.out.println("节点数据文件: " + nodeFile + "入库完毕");
     }
 
     public Map<Integer, Node> getNodeMap() {

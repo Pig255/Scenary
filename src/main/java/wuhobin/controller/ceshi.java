@@ -17,12 +17,6 @@ public class ceshi {
     private NoderMapper noderMapper;
     @RequestMapping("ceshi")
     public String ceshi(){
-        List<Noder> list= noderMapper.findAll();
-        System.out.println(list);
-        CMDSetting setting = CMDSetting.getDefaultSetting();
-        CMDContainer.init(setting);
-        GLListener glListener = new GLListener();
-        glListener.setUp();
         return "祝佳雯大憨批";
     }
 }
