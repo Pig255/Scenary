@@ -1,4 +1,5 @@
 package wuhobin.container;
+
 import wuhobin.listener.CMDSettingListener;
 import wuhobin.repository.ElementDataRepository;
 import wuhobin.repository.FaceRepository;
@@ -11,6 +12,7 @@ import wuhobin.util.Camera;
 import wuhobin.util.impl.EulerCamera;
 import wuhobin.util.impl.QuaternionCamera;
 
+import javax.annotation.Resource;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -24,7 +26,7 @@ import java.util.Map;
 //  1. 新定义的类，凡要引用setting.json者，皆需要在init()和update()方法注册;
 //  2. 可以用spring的bean管理工具替代，或者写成注解的形式.
 public class CMDContainer {
-
+    @Resource
     // BeanMap
     private static Map<Class<? extends CMDSettingListener>, CMDSettingListener> listenerMap;
 
@@ -36,7 +38,6 @@ public class CMDContainer {
     public static void init(CMDSetting setting) {
         listenerMap = new LinkedHashMap<>();
         lastSetting = setting;
-
         // 单元数据加载类
         ElementDataRepository elementDataRepository = null;
         switch (setting.getElementType()) {

@@ -1,9 +1,11 @@
 package wuhobin.repository;
+
 import wuhobin.container.CMDSetting;
 import wuhobin.entity.Node;
 import wuhobin.enums.ResultTypeEnum;
 import wuhobin.listener.CMDSettingListener;
 import wuhobin.util.NormalUtil;
+
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -18,7 +20,6 @@ import java.util.Scanner;
  * @date 2022.04.12
  */
 public class NodeRepository implements CMDSettingListener {
-
     private Map<Integer, Node> nodeMap;
     private float maxData;
     private float minData;
@@ -27,7 +28,6 @@ public class NodeRepository implements CMDSettingListener {
 
     @Override
     public void init(CMDSetting setting) {
-
         this.setting = setting;
         this.maxData = 0;
         this.minData = 0;

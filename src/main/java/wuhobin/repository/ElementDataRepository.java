@@ -1,5 +1,6 @@
 package wuhobin.repository;
 
+import org.springframework.stereotype.Component;
 import wuhobin.container.CMDSetting;
 import wuhobin.entity.ElementData;
 import wuhobin.listener.CMDSettingListener;
@@ -13,6 +14,7 @@ import java.util.List;
  * @date 2022.04.12
  */
 // 加载单元数据
+@Component
 public abstract class ElementDataRepository implements CMDSettingListener {
 
     protected String elementFile;
