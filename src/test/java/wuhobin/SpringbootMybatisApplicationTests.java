@@ -14,8 +14,8 @@ class SpringbootMybatisApplicationTests {
     private NoderMapper userMapper;
     @Test
     public void testFindAll() {
-        userMapper.insertNewNode(2,1.1,1.1,1.1,1.1,1.1,1.1,1.1,1.1,
-                1.1,1.1,1.1,1.1);
+//        userMapper.insertNewNode(2,1.1,1.1,1.1,1.1,1.1,1.1,1.1,1.1,
+//                1.1,1.1,1.1,1.1);
         List<Noder> list= userMapper.findAll();
         System.out.println(list);
     }

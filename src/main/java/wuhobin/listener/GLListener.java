@@ -60,7 +60,7 @@ public class GLListener implements GLEventListener, KeyListener {
         GLProfile glProfile = GLProfile.get(GLProfile.GL3);
         GLCapabilities glCapabilities = new GLCapabilities(glProfile);
 
-        camera.setPosition(new Vec3(230.0f, 0.0f, -1000.0f));
+        camera.setPosition(new Vec3(-100.0f, 0.0f, -1000.0f));
 
         window = GLWindow.create(glCapabilities);
         window.setTitle("Compressor Mechanics Digitization");

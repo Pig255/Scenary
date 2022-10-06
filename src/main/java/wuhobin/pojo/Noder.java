@@ -15,9 +15,15 @@ public class Noder {
     private double stressX;
     private double stressY;
     private double stressZ;
+    private double stressXY;
+    private double stressXZ;
+    private double stressYZ;
     private double strainX;
     private double strainY;
     private double strainZ;
+    private double strainXY;
+    private double strainYZ;
+    private double strainXZ;
     private double deformX;
     private double deformY;
     private double deformZ;

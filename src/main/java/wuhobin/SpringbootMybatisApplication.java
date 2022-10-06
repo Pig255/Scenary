@@ -12,6 +12,7 @@ public class SpringbootMybatisApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootMybatisApplication.class, args);
+        System.out.println("---------------启动成功------------------");
         CMDSetting setting = CMDSetting.getDefaultSetting();
         CMDContainer.init(setting);
         GLListener glListener = new GLListener();

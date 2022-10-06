@@ -3,6 +3,9 @@ package wuhobin.container;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import wuhobin.entity.Element;
 import wuhobin.entity.impl.HexahedronElement;
 import wuhobin.entity.impl.TetrahedronElement;
@@ -11,6 +14,7 @@ import wuhobin.enums.DrawingModeEnum;
 import wuhobin.enums.ElementTypeEnum;
 import wuhobin.enums.ResultTypeEnum;
 import wuhobin.util.NormalUtil;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,6 +52,8 @@ public class CMDSetting {
     // 片段着色器文件
     private String fShaderFile;
 
+    private Integer isImport;
+
     // 单元数据文件
     private String elementFile;
 
@@ -78,6 +84,8 @@ public class CMDSetting {
                 jsonRootNode.get("activeResult").asText());
         this.drawingMode = DrawingModeEnum.valueOf(
                 jsonRootNode.get("drawingMode").asText());
+
+        this.isImport = jsonRootNode.get("isImport").asInt();
 
         this.profileFace = new ArrayList<>();
         JsonNode profileFaceNode = jsonRootNode.get("profileFace");
@@ -143,6 +151,9 @@ public class CMDSetting {
 
     public void setfShaderFile(String fShaderFile) {
         this.fShaderFile = fShaderFile;
+    }
+    public int getIsImport() {
+         return isImport;
     }
 
     public void setElementFile(String elementFile) {

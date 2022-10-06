@@ -27,7 +27,7 @@ public class EulerCamera extends Camera {
     private float mouseSensitivity; // 鼠标灵敏度
 
     public EulerCamera() {
-        position = new Vec3(0.0f, 0.0f, 0.0f);
+        position = new Vec3(100.0f, 0.0f, 0.0f);
         wordUp = new Vec3(0.0f, 1.0f, 0.0f);
         yaw = -90.f;
         pitch = 0.0f;
